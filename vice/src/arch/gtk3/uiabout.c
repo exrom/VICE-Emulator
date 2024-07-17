@@ -174,8 +174,8 @@ void ui_about_dialog_show(void)
             pango_version_string());
 #else
     g_snprintf(version, sizeof(version),
-            "%s\n(GTK3 %d.%d.%d, GLib %d.%d.%d, Cairo %s, Pango %s)",
-            VERSION,
+            "%s    exrom built %s %s\n(GTK3 %d.%d.%d, GLib %d.%d.%d, Cairo %s, Pango %s)",
+            VERSION, __DATE__, __TIME__,       // simple patch to show whether i run the correct binary :)
             GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION,
             GLIB_MAJOR_VERSION, GLIB_MINOR_VERSION, GLIB_MICRO_VERSION,
             cairo_version_string(),
