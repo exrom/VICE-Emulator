@@ -13935,10 +13935,15 @@ Specify filename of the C64DTV NTSC v3 ROM image
 Specify filename of the C64DTV PAL v3 ROM image
 (@code{DTVPALV3FlashName}).
 
-@findex -hummerromimage
-@item -hummerromimage <name>
-Specify filename of the C64DTV Hummer ROM image
-(@code{DTVHummerFlashName}).
+@findex -hummerntscromimage
+@item -hummerntscromimage <name>
+Specify filename of the C64DTV NTSC Hummer ROM image
+(@code{DTVNTSCHummerFlashName}).
+
+@findex -hummerpalromimage
+@item -hummerpalromimage <name>
+Specify filename of the C64DTV PAL Hummer ROM image
+(@code{DTVPALHummerFlashName}).
 
 @findex -c64dtvromrw, +c64dtvromrw
 @item -c64dtvromrw
@@ -14006,7 +14011,8 @@ The C64DTV userport emulation currently supports three devices:
 Hummer ADC, userport joystick and PS/2 mouse.
 
 The joystick that controls either the Hummer ADC or userport joystick
-can be selected using the same parameter or menu option.
+can be selected using the same parameter or menu option. (Enable "Hummer userport
+adapter" and use the first extra joystick.)
 
 While using the Hummer ADC, joystick UP and DOWN are mapped to
 the Hummer buttons A and B respectively. LEFT and RIGHT set the ADCs
@@ -14110,9 +14116,13 @@ String specifying the filename of the DTV NTSC v3 Flash ROM image.
 @item DTVPALV3FlashName
 String specifying the filename of the DTV PAL v3 Flash ROM image.
 
-@vindex DTVHummerFlashName
-@item DTVHummerFlashName
-String specifying the filename of the DTV Hummer Flash ROM image.
+@vindex DTVNTSCHummerFlashName
+@item DTVNTSCHummerFlashName
+String specifying the filename of the DTV NTSC Hummer Flash ROM image.
+
+@vindex DTVPALHummerFlashName
+@item DTVPALHummerFlashName
+String specifying the filename of the DTV PAL Hummer Flash ROM image.
 
 @vindex DTVFlashRevision
 @item DTVFlashRevision
@@ -22742,11 +22752,11 @@ HC HC HC HC [
         ...
         RS[0][RC-1] @{ ... @}
       ]
+      CL[0] CL[0] CL[0] CL[0] CL[0] CL[0] CL[0] CL[0] | IL[0] | IB[0][0] IB[0][1] ... IB[0][IL-1]
     @}
     ...
     IS[HC-1] @{ ... @}
 ]
-CL CL CL CL CL CL CL CL | IL | IB[0] IB[1] ... IB[IL-1]
 @end example
 @*
 
