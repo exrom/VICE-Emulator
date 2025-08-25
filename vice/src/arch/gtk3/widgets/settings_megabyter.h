@@ -1,9 +1,10 @@
+/** \file   settings_megabyter.h
+ * \brief   Settings widget to control Megabyter resources - header
+ *
+ * \author  Bas Wassink <b.wassink@ziggo.nl>
+ */
+
 /*
- * c64dtvmemsnapshot.h - C64DTV memory snapshot handling.
- *
- * Written by
- *  Andreas Boose <viceteam@t-online.de>
- *
  * This file is part of VICE, the Versatile Commodore Emulator.
  * See README for copyright notice.
  *
@@ -24,12 +25,11 @@
  *
  */
 
-#ifndef VICE_C64DTVMEMSNAPSHOT_H
-#define VICE_C64DTVMEMSNAPSHOT_H
+#ifndef VICE_SETTINGS_MEGABYTER_H
+#define VICE_SETTINGS_MEGABYTER_H
 
-struct snapshot_s;
+#include <gtk/gtk.h>
 
-int c64dtv_snapshot_write_module(struct snapshot_s *s, int save_roms);
-int c64dtv_snapshot_read_module(struct snapshot_s *s);
+GtkWidget *settings_megabyter_widget_create(GtkWidget *parent);
 
 #endif

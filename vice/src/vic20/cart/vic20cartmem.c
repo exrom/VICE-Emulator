@@ -387,14 +387,18 @@ uint8_t cartridge_read_blk5(uint16_t addr)
 {
     int res = CART_READ_THROUGH;
     uint8_t value;
-    DBG(("cartridge_read_blk5 (%d) 0x%04x", mem_cartridge_type, addr));
+    /* DBG(("cartridge_read_blk5 (%d) 0x%04x", mem_cartridge_type, addr)); */
 
     /* "Slot 0" */
 
     if (minimon_cart_enabled()) {
+
         if ((res = minimon_blk5_read(addr, &value)) == CART_READ_VALID) {
             return value;
         }
+        /* open bus value, in case no cartridge is attached to pass through */
+        vic20_cpu_last_data = (addr >> 8);
+        /* DBG(("cartridge_read_blk5 %02x %04x", vic20_cpu_last_data, addr)); */
     }
 
     /* main slot */

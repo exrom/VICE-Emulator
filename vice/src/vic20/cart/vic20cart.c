@@ -762,13 +762,9 @@ int cartridge_attach_image(int type, const char *filename)
            cart currently is in the "Main Slot" */
         oldmain = cart_getid_slotmain();
         if (oldmain != CARTRIDGE_NONE) {
-            DBG(("CART: detach slot main ID: %d\n", oldmain));
+            DBG(("CART: detach slot main ID: %d", oldmain));
             cartridge_detach_image(oldmain);
         }
-    }
-    if (oldmain != carttype) {
-        DBG(("CART: detach %s ID: %d\n", slotmain ? "slot main" : "other slot", carttype));
-        cartridge_detach_image(carttype);
     }
 #endif
     switch (carttype) {
@@ -914,6 +910,7 @@ exiterror:
 
 void cartridge_detach_image(int type)
 {
+    DBG(("CART: cartridge_detach_image vic20cart_type:%d type:%d", vic20cart_type, type));
     cartridge_detach(vic20cart_type);
     vic20cart_type = CARTRIDGE_NONE;
     cartridge_is_from_snapshot = 0;
@@ -1206,12 +1203,16 @@ int cartridge_can_flush_image(int crtid)
 {
     const char *p;
     if (!cartridge_type_enabled(crtid)) {
+        DBG(("cartridge_can_flush_image crtid:%d ret: 0", crtid));
         return 0;
     }
     p = cartridge_get_filename_by_crtid(crtid);
     if ((p == NULL) || (*p == '\x0')) {
+        DBG(("cartridge_can_flush_image crtid:%d ret: 0", crtid));
         return 0;
     }
+
+    DBG(("cartridge_can_flush_image crtid:%d ret: 1", crtid));
     return 1;
 }
 
@@ -1232,8 +1233,10 @@ int cartridge_can_flush_secondary_image(int crtid)
 int cartridge_can_save_image(int crtid)
 {
     if (!cartridge_type_enabled(crtid)) {
+        DBG(("cartridge_can_save_image crtid:%d ret: 0", crtid));
         return 0;
     }
+    DBG(("cartridge_can_save_image crtid:%d ret: 1", crtid));
     return 1;
 }
 
